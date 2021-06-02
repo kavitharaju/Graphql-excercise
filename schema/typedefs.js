@@ -26,6 +26,7 @@ const typeDefs = gql`
   type Query {
   	allLanguages: [Language]
     searchLanguages(searchPhrase: String): [Language]
+    searchLanguagesByLanguageCode(searchPhrase: String): [Language]
   }
 
 
