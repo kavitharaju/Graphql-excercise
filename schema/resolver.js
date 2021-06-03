@@ -11,12 +11,15 @@ langs = [
 const resolvers = {
 	Query: {
 		allLanguages(_, args, {dataSources}) {
-			console.log(args)
-			console.log(dataSources)
+			// console.log(args)
+			// console.log(dataSources)
 			return dataSources.vachanAPI.getAllLanguages()
 		},
 		searchLanguages(_, { searchPhrase }, { dataSources}) {
 			return dataSources.vachanAPI.searchLanguages(searchPhrase)
+		},
+		searchLanguagesByLanguageCode(_, { searchPhrase }, { dataSources}) {
+			return dataSources.vachanAPI.searchLanguagesByLanguageCode(searchPhrase)
 		}
 		// languages: () => langs
 	},

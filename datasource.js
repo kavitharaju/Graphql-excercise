@@ -30,6 +30,16 @@ class VachanAPI extends RESTDataSource {
   	return camelcaseKeys(langs, { deep: true })
   }
 
+  async searchLanguagesByLanguageCode(query) {
+    let langs = await this.get(`v2/languages?language_code=${query}`)
+    for (var i = langs.length - 1; i >= 0; i--) {
+      for (const [key, value] of Object.entries(langs[i].metaData)) {
+      langs[i][key] = value;
+    }
+    }
+    return camelcaseKeys(langs, { deep: true })
+  }  
+
   // async addLanguage
 }
 
