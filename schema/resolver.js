@@ -1,7 +1,3 @@
-const ds = require('../datasource.js')
-// const { dataSources } = require('../datasource.js')
-
-// console.log(ds)
 
 langs = [
 {"name": "sample name", "code": "SMN"}
@@ -9,6 +5,19 @@ langs = [
 
 
 const resolvers = {
+	Catalog: {
+		owner(parent, args, {dataSources}){
+			return dataSources.catalogNext.getUserById(parent.ownerId)
+		},
+		repo(parent, args, {dataSources}){
+			return dataSources.catalogNext.getRepoById(parent.repoId)
+		}
+	},
+	Repo:{
+		owner(parent, args, {dataSources}){
+			return dataSources.catalogNext.getUserById(parent.ownerId)
+		}
+	},
 	Query: {
 		allLanguages(_, args, {dataSources}) {
 			// console.log(args)
@@ -20,8 +29,19 @@ const resolvers = {
 		},
 		searchLanguagesByLanguageCode(_, { searchPhrase }, { dataSources}) {
 			return dataSources.vachanAPI.searchLanguagesByLanguageCode(searchPhrase)
-		}
+		},
 		// languages: () => langs
+
+		allUsers(_, args, {dataSources}){
+			return dataSources.catalogNext.getAllUsers();
+		},
+		allRepos(_, args, {dataSources}){
+			return dataSources.catalogNext.getAllRepos();
+		},
+		allCatalogs(_, args, {dataSources}){
+			return dataSources.catalogNext.getAllCatalogs();
+		}
+
 	},
 	Mutation: {
 		addLanguage(parent, args){

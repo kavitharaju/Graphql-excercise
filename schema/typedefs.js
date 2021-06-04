@@ -11,6 +11,25 @@ const typeDefs = gql`
     description: String
   }
 
+  type User {
+    fullName: String
+    email: String
+  }
+
+  type Repo {
+    name: String
+    htmlUrl: String
+    language: String
+    description: String
+    owner: User
+  }
+
+  type Catalog {
+    name: String
+    repo: Repo
+    owner: User
+  }
+
   #enum Direction{
   #	left-to-right
   #	right-to-left
@@ -27,6 +46,10 @@ const typeDefs = gql`
   	allLanguages: [Language]
     searchLanguages(searchPhrase: String): [Language]
     searchLanguagesByLanguageCode(searchPhrase: String): [Language]
+    allUsers: [User]
+    allRepos: [Repo]
+    allCatalogs: [Catalog]
+
   }
 
 
