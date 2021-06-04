@@ -1,4 +1,5 @@
 const { RESTDataSource } = require('apollo-datasource-rest');
+const { SQLDataSource } = require("datasource-sql");
 const camelcaseKeys = require('camelcase-keys');
 
 class VachanAPI extends RESTDataSource {
@@ -43,4 +44,43 @@ class VachanAPI extends RESTDataSource {
   // async addLanguage
 }
 
+const MINUTE = 60;
+
+class CatalogNext extends SQLDataSource {
+
+  queryDB(query){
+    return query.then(function(rows){
+            return rows;
+        })
+  }
+
+  async getAllUsers() {
+    const qry = this.knex
+      .select("*")
+      .from("users")
+      .cache(MINUTE)
+    const res = await this.queryDB(qry)
+    return camelcaseKeys(res, { deep: true })
+  }
+
+  async getAllRepos() {
+    const qry = this.knex
+      .select("*")
+      .from("repositories")
+      .cache(MINUTE)
+    const res = await this.queryDB(qry)
+    return camelcaseKeys(res, { deep: true })
+  }
+
+  async getAllCatalogs() {
+    const qry = this.knex
+      .select("*")
+      .from("catalogs")
+      .cache(MINUTE)
+    const res = await this.queryDB(qry)
+    return camelcaseKeys(res, { deep: true })
+   }
+}
 module.exports.VachanAPI = VachanAPI
+module.exports.CatalogNext = CatalogNext
+

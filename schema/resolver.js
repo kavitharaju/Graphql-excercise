@@ -16,8 +16,18 @@ const resolvers = {
 		},
 		searchLanguagesByLanguageCode(_, { searchPhrase }, { dataSources}) {
 			return dataSources.vachanAPI.searchLanguagesByLanguageCode(searchPhrase)
-		}
+		},
 		// languages: () => langs
+
+		allUsers(_, args, {dataSources}){
+			return dataSources.catalogNext.getAllUsers();
+		},
+		allRepos(_, args, {dataSources}){
+			return dataSources.catalogNext.getAllRepos();
+		},
+		allCatalogs(_, args, {dataSources}){
+			return dataSources.catalogNext.getAllCatalogs();
+		}
 	},
 	Mutation: {
 		addLanguage(parent, args){
