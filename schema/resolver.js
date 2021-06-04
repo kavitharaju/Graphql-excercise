@@ -5,6 +5,19 @@ langs = [
 
 
 const resolvers = {
+	Catalog: {
+		owner(parent, args, {dataSources}){
+			return dataSources.catalogNext.getUserById(parent.ownerId)
+		},
+		repo(parent, args, {dataSources}){
+			return dataSources.catalogNext.getRepoById(parent.repoId)
+		}
+	},
+	Repo:{
+		owner(parent, args, {dataSources}){
+			return dataSources.catalogNext.getUserById(parent.ownerId)
+		}
+	},
 	Query: {
 		allLanguages(_, args, {dataSources}) {
 			// console.log(args)
@@ -28,6 +41,7 @@ const resolvers = {
 		allCatalogs(_, args, {dataSources}){
 			return dataSources.catalogNext.getAllCatalogs();
 		}
+
 	},
 	Mutation: {
 		addLanguage(parent, args){

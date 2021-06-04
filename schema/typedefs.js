@@ -21,10 +21,13 @@ const typeDefs = gql`
     htmlUrl: String
     language: String
     description: String
+    owner: User
   }
 
   type Catalog {
     name: String
+    repo: Repo
+    owner: User
   }
 
   #enum Direction{
@@ -46,6 +49,7 @@ const typeDefs = gql`
     allUsers: [User]
     allRepos: [Repo]
     allCatalogs: [Catalog]
+
   }
 
 

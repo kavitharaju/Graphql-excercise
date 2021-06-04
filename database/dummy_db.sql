@@ -33,6 +33,6 @@ INSERT into repositories(id, name, owner_id, html_url, language, description) va
 	(3, "sample_repo3" ,3, "https://git.door43.org/Door43-Catalog/sample_repo3", "ml", "Sample Malayalam content");
 insert into catalogs(id, name, owner_id, repo_id) values
 	(1, "sample_catalog1", 1, 1),
-	(2, "sample_catalog1", 2, 2),
-	(3, "sample_catalog1", 3, 3);
+	(2, "sample_catalog2", 2, 2),
+	(3, "sample_catalog3", 3, 3);
 	

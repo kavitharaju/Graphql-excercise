@@ -80,6 +80,29 @@ class CatalogNext extends SQLDataSource {
     const res = await this.queryDB(qry)
     return camelcaseKeys(res, { deep: true })
    }
+
+   async getUserById(id) {
+    const qry = this.knex
+      .select('*')
+      .from("users")
+      .where({"id" : id})
+      .first()
+      .cache(MINUTE)
+    const res = await this.queryDB(qry)
+    return camelcaseKeys(res, { deep: true })
+   }
+
+   async getRepoById(id) {
+    const qry = this.knex
+      .select("*")
+      .from('repositories')
+      .where({"id" : id})
+      .first()
+      .cache(MINUTE)
+    const res = await this.queryDB(qry)
+    return camelcaseKeys(res, { deep: true })
+   }
+
 }
 module.exports.VachanAPI = VachanAPI
 module.exports.CatalogNext = CatalogNext
