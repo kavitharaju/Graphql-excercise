@@ -1,7 +1,7 @@
 const { ApolloServer } = require('apollo-server');
 const { typeDefs } = require('./schema/typedefs.js');
 const { resolvers } = require('./schema/resolver.js');
-const { VachanAPI } = require('./datasource.js')
+const { VachanAPI } = require('./schema/datasource.js')
 
 
 const server = new ApolloServer({ typeDefs, resolvers,  dataSources: () => ({vachanAPI: new VachanAPI()})});

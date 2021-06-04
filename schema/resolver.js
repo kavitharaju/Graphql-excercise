@@ -1,7 +1,3 @@
-const ds = require('../datasource.js')
-// const { dataSources } = require('../datasource.js')
-
-// console.log(ds)
 
 langs = [
 {"name": "sample name", "code": "SMN"}
